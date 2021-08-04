@@ -1,11 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import { GlobalStyle } from "./Components/GlobalStyle";
 
 function App() {
   return (
-    <div className="App">
-      <p>oi Laura</p>
-    </div>
+    <>
+      <GlobalStyle />
+      <div className="App">
+        <p>oi Laura</p>
+      </div>
+    </>
   );
 }
 
