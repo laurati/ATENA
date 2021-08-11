@@ -2,7 +2,8 @@ import * as React from 'react';
 import './sidenav.css'
 
 
-const SideNav = () => {
+
+const SideNav = ({laura, luiz}) => {
 
 
   function openNav() {
@@ -17,9 +18,9 @@ const SideNav = () => {
         <>
             <div id="mySidenav" className="sidenav" onMouseLeave={closeNav}>
                 
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Clients</a>
+                <a href="#" onClick={laura}>Marcadores</a>
+                <a href="#" onClick={luiz}>Círculos</a>
+                <a href="#">Polígono</a>
                 <a href="#">Contact</a>
             </div>
 
