@@ -1,7 +1,9 @@
 import * as React from 'react';
 import './sidenav.css'
 
+
 const SideNav = () => {
+
 
   function openNav() {
     document.getElementById("mySidenav").style.width = "250px";

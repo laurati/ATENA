@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, Polyline, InfoWindow, Circle } from 'google-maps-react';
 import ListarDados from '../../Service/ListarDados';
+import SideNav from '../SideNav/sidenav';
 
 
 const MapComponent = (props) =>{
@@ -107,6 +108,8 @@ const MapComponent = (props) =>{
     return (
       
       <>
+
+        <SideNav/>
         <Map
           google={props.google}
           zoom={4}
@@ -131,7 +134,7 @@ const MapComponent = (props) =>{
         </InfoWindow>
 
         {teste ? displayMarkers() : null}
-        {displayCircles()}
+        {teste ? displayCircles() : null}
         
 
         </Map>
