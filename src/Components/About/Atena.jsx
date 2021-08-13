@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import MapComponent from '../MapComponent';
 import NavBarra from '../NavBar/navbar'
 import SideNav from '../SideNav/sidenav';
@@ -24,6 +25,7 @@ const [testeCirc, setTesteCirc] = useState(false)
         <NavBarra/>
         <SideNav laura={inserirMarcadores} luiz={inserirCirculos}/>
         <MapComponent modificador={teste} circ={testeCirc}/>
+        
         
         
 

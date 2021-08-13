@@ -11,8 +11,8 @@ const NavBarra = () => {
     <>
 
     <ul>
-      <li className="active" href="#home"><Link to="/atena">Atena</Link></li>
-      <li className="alt" href="#news"><Link to="/about">News</Link></li>
+      <li className="active" href="#home"><Link to="/atena">Athena</Link></li>
+      <li className="alt" href="#news"><Link to="/modal">News</Link></li>
       <li className="alt" href="#contact"><Link to="/about">Contact</Link></li>
       <li className="alt" href="#about"><Link to="/about">About</Link></li>
      

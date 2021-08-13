@@ -8,15 +8,9 @@ const Botao = () => {
 
     <div className='grupo'>
       <button className='botao'>
-        Botao1 
-      </button>  
-      
-      <button className='botao'>
-        Botao2 
-      </button>  
-
-      <button className='botao'>
-        Botao3 
+        Temperatura
+        Umidade 
+        Preciptação
       </button>  
     </div>
   )
