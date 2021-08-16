@@ -11,11 +11,10 @@ import ListarDados from "../../Service/ListarDados";
 import Popup from "../Popup/Popup";
 
 const MapComponent = (props) => {
-  let lat_array = [];
-
-  let lon_array = [];
-
+  //let lat_array = [];
+  //let lon_array = [];
   let lat_lon = [];
+  //let tempMax = [];
 
   const [coord, setCoord] = useState([]);
 
@@ -23,7 +22,7 @@ const MapComponent = (props) => {
     retrieveData();
   }, []);
 
-  async function retrieveData() {
+  /*async function retrieveData() {
     //console.log('retrieve')
     await ListarDados.retrieveData().then((response) => {
       for (let i = 0; i < response.data.length; i++) {
@@ -38,6 +37,26 @@ const MapComponent = (props) => {
       }
     });
 
+    setCoord(lat_lon);
+  }*/
+
+
+  async function retrieveData() {
+    
+    await ListarDados.retrieveData().then((response) => {
+      
+      for (let i = 0; i < response.data.length; i++) {
+        lat_lon.push({ 
+          latitude: parseFloat(response.data[i].lat), 
+          longitude: parseFloat(response.data[i].lon), 
+          tempMax: parseFloat(response.data[i].tempMax).toFixed(2), 
+          umid: parseFloat(response.data[i].umid).toFixed(2), 
+          precip: parseFloat(response.data[i].precip).toFixed(2) 
+        });
+      }    
+
+    });
+    
     setCoord(lat_lon);
   }
 
@@ -79,6 +98,9 @@ const MapComponent = (props) => {
           position={{
             lat: item.latitude,
             lng: item.longitude,
+            temp: item.tempMax,
+            umid: item.umid,
+            precip: item.precip,
           }}
           onClick={() => {setButtonPopup(true); setInfoItem(item);}}
         />
@@ -122,6 +144,9 @@ const MapComponent = (props) => {
         <br></br>
         <p>Latitude: {infoItem.latitude}</p>
         <p>Longitude: {infoItem.longitude}</p>
+        <p>Temperatura Máxima: {infoItem.tempMax}</p>
+        <p>Precipitação: {infoItem.precip}</p>
+        <p>Umidade: {infoItem.umid}</p>
       </Popup>
       
 
