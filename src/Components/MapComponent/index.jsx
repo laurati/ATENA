@@ -80,7 +80,7 @@ const MapComponent = (props) => {
             lat: item.latitude,
             lng: item.longitude,
           }}
-          onClick={() => setButtonPopup(true)}
+          onClick={() => {setButtonPopup(true); setInfoItem(item);}}
         />
       );
     });
@@ -111,6 +111,7 @@ const MapComponent = (props) => {
   };
 
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [infoItem, setInfoItem] = useState([]);
 
 
   return (
@@ -118,7 +119,9 @@ const MapComponent = (props) => {
       
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <h3>Informações</h3>
-        
+        <br></br>
+        <p>Latitude: {infoItem.latitude}</p>
+        <p>Longitude: {infoItem.longitude}</p>
       </Popup>
       
 
