@@ -13,6 +13,11 @@ const MapComponent = (props) => {
   const [coord, setCoord] = useState([]);
 
   const [temp, setTemp] = useState([]);
+  const [umid, setUmid] = useState([]);
+  const [precip, setPrecip] = useState([]);
+
+  const [botaoSelect, setBotaoSelect] = useState();
+  
 
   useEffect(() => {
     retrieveData();
@@ -37,6 +42,8 @@ const MapComponent = (props) => {
     setCoord(lat_lon);
   }*/
   let tempArray = [];
+  let umidArray=[];
+  let precipArray=[];
 
   async function retrieveData() {
     await ListarDados.retrieveData().then((response) => {
@@ -49,14 +56,21 @@ const MapComponent = (props) => {
           precip: parseFloat(response.data[i].precip).toFixed(2),
         });
       }
-      for (let i = 0; i < response.data.length; i++) {
-        tempArray.push(parseFloat(response.data[i].precip));
-      }
+        for (let i = 0; i < response.data.length; i++) {
+          tempArray.push(parseFloat(response.data[i].tempMax));      
+          umidArray.push(parseFloat(response.data[i].umid));   
+          precipArray.push(parseFloat(response.data[i].precip));   
+        }
     });
 
     setCoord(lat_lon);
+    
     setTemp([Math.min(...tempArray),Math.max(...tempArray)]);
+    setUmid([Math.min(...umidArray),Math.max(...umidArray)]);
+    setPrecip([Math.min(...precipArray),Math.max(...precipArray)]);
+    
   }
+  
 
   /*let maior = 0;
   for (let i = 0; i < temp.length; i++) {
@@ -69,12 +83,19 @@ const MapComponent = (props) => {
   /*temp.sort();
   let menor = temp[0];
   console.log(menor);*/
-
+  let lulu;
+  if(botaoSelect=== 'umidade'){
+    lulu=umid;
+  }else if(botaoSelect=== 'temperatura'){
+    lulu=temp;
+  }else if(botaoSelect=== 'precipitacao'){
+    lulu=precip;
+  }
 
   const alterarCor = (temperatura) => {
     let color1 = "0000FF";
     let color2 = "FF0000";
-    let ratio = ((temperatura - temp[0])/(temp[1]-temp[0]));
+    let ratio = ((temperatura - lulu[0])/(lulu[1]-lulu[0]));
     let hex = function (x) {
       x = x.toString(16);
       return x.length == 1 ? "0" + x : x;
@@ -146,9 +167,18 @@ const MapComponent = (props) => {
       );
     });
   };
+  
 
   const displayCircles = () => {
     return coord.map((item, index) => {
+      let y;
+      if(botaoSelect==='umidade'){
+        y = alterarCor(item.umid)
+      }else if(botaoSelect=== 'temperatura'){
+        y = alterarCor(item.tempMax)
+      }else if(botaoSelect=== 'precipitacao'){
+        y = alterarCor(item.precip)
+      }
       return (
         <Circle
           key={index}
@@ -161,10 +191,10 @@ const MapComponent = (props) => {
           onClick={(event) => {
             console.log("click");
           }}
-          strokeColor={alterarCor(item.precip)}
+          strokeColor={y}
           strokeOpacity={0.8}
           strokeWeight={20}
-          fillColor={alterarCor(item.precip)}
+          fillColor={y}
           fillOpacity={0.2} 
         />
       );
@@ -189,8 +219,20 @@ const MapComponent = (props) => {
     return markerList;
   }
 
-  const [botaoSelect, setBotaoSelect] = useState();
-  console.log(botaoSelect)
+  const displayPoli = () => {
+      return (
+        <Polyline
+          path={stores2}
+          strokeColor="#0000FF"
+          strokeOpacity={0.8}
+          strokeWeight={2}
+        />
+      );
+  };
+  
+
+  
+
 
   return (
     <>
@@ -207,18 +249,15 @@ const MapComponent = (props) => {
         <p>Umidade: {infoItem.umid}</p>
       </Popup>
 
-
       <Map
         google={props.google}
         zoom={4}
         initialCenter={{ lat: -2.0, lng: -54.1 }}
       >
-        <Polyline
-          path={stores2}
-          strokeColor="#0000FF"
-          strokeOpacity={0.8}
-          strokeWeight={2}
-        />
+        
+        {botaoSelect==='umidade' ? displayCircles() : null}
+        {botaoSelect==='temperatura' ? displayCircles() : null}
+        {botaoSelect==='precipitacao' ? displayCircles() : null}
 
         <InfoWindow
           marker={mapState.activeMarker}
