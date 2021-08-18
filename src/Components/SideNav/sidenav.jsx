@@ -3,7 +3,7 @@ import './sidenav.css'
 
 
 
-const SideNav = ({laura, luiz}) => {
+const SideNav = ({changeDisplay}) => {
 
 
   function openNav() {
@@ -18,10 +18,10 @@ const SideNav = ({laura, luiz}) => {
         <>
             <div id="mySidenav" className="sidenav" onMouseLeave={closeNav}>
                 
-                <a href="#" onClick={laura}>Marcadores</a>
-                <a href="#" onClick={luiz}>Círculos</a>
-                <a href="#">Polígono</a>
-                <a href="#">Contact</a>
+              <a href="#" onClick={() => changeDisplay('pic')}>PIC's</a>
+              <a href="#" onClick={() => changeDisplay('circle')}>Circles</a>
+              <a href="#">Polígono</a>
+              <a href="#">Contact</a>
             </div>
 
             <span className="openbtn" onMouseEnter={openNav}>&#9776; Menu</span>

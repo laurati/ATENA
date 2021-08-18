@@ -34,9 +34,9 @@ const BotaoTeste = () => {
         variant="contained"
         className="teste"
       >
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
+        <Button>Precipitação</Button>
+        <Button>Temperatura Máxima</Button>
+        <Button>Umidade</Button>
       </ButtonGroup>
       </ThemeProvider>
     </>

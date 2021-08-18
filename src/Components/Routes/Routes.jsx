@@ -11,6 +11,7 @@ const Routes = () => {
       <Switch>
         <Route component={About} exact path="/about" />
         <Route component={NavBarra} exact path="/navBar"/>
+        <Route component={Atena} exact path="/"/>
         <Route component={Atena} exact path="/atena"/>
         <Route component={Modal} exact path="/modal"/>
         

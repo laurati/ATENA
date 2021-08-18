@@ -3,28 +3,34 @@ import React, { useState } from 'react';
 import MapComponent from '../MapComponent';
 import NavBarra from '../NavBar/navbar'
 import SideNav from '../SideNav/sidenav';
+import Select from "../Select/Select"
 
 const Atena = () => {
 
-function inserirMarcadores(){
-  setTeste(true);  
-}
+  const [display, setDisplay] = useState([]);
 
-const [teste, setTeste] = useState(false)
+  const changeDisplay = (value) => {
+    //console.log(value);
+    let displayUpdated;
+    if(display.indexOf(value) > -1){
+      displayUpdated = display.filter(e => e !== value);
+    } else {
+      displayUpdated = [...display, value];
+    }
+    //console.log(displayUpdated);
+    setDisplay(displayUpdated);
+  }
 
-function inserirCirculos(){
-  setTesteCirc(true);  
-}
 
-const [testeCirc, setTesteCirc] = useState(false)
 
 
   return (
         <>
         
         <NavBarra/>
-        <SideNav laura={inserirMarcadores} luiz={inserirCirculos}/>
-        <MapComponent modificador={teste} circ={testeCirc}/>
+        <Select/>
+        <SideNav changeDisplay={changeDisplay}/>
+        <MapComponent display={display}/>
         
         
         
