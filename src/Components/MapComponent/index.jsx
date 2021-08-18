@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {  Map, GoogleApiWrapper, Marker, Polyline, InfoWindow, Circle,} from "google-maps-react";
 import ListarDados from "../../Service/ListarDados";
 import Popup from "../Popup/Popup";
-
+import Select from "../Select/Select"
 
 const MapComponent = (props) => {
   //let lat_array = [];
@@ -189,8 +189,14 @@ const MapComponent = (props) => {
     return markerList;
   }
 
+  const [botaoSelect, setBotaoSelect] = useState();
+  console.log(botaoSelect)
+
   return (
     <>
+
+      <Select setValue = {setBotaoSelect}/>
+
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <h3>Informações</h3>
         <br></br>

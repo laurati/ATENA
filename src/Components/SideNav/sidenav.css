@@ -36,13 +36,14 @@ body {
 
   .openbtn{
     top:25%;
-    width: 8%;
+    width: 100px;
     padding: 10px 10px;
     border: 1px solid #eee;
     border-radius: 6px;
     font-size:30px;
     cursor:pointer;
     position: absolute;
+   
     z-index: 2;
     background-color: #FCC302;
     margin-left: 2%;

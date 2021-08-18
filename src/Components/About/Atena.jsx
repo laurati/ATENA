@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import MapComponent from '../MapComponent';
 import NavBarra from '../NavBar/navbar'
 import SideNav from '../SideNav/sidenav';
-import Select from "../Select/Select"
+
 
 const Atena = () => {
 
@@ -28,7 +28,7 @@ const Atena = () => {
         <>
         
         <NavBarra/>
-        <Select/>
+        
         <SideNav changeDisplay={changeDisplay}/>
         <MapComponent display={display}/>
         

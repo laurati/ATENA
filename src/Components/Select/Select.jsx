@@ -1,27 +1,52 @@
-import React, { useEffect,useState } from 'react';
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
 import "./Select.css";
 
-const Select = () => {
+const Select = ({setValue}) => {
+
+    //const [value, setValue] = useState("select");
+
+    //console.log(value)
+
+    let options =  [ 
+        {name: 'Selecione',
+        value: 'select',},
+
+        {name: 'Temperatura',
+        value: 'temperatura',},
+
+        {name: 'Umidade',
+        value: 'umidade',},
+
+        {name: 'Precipitação',
+        value: 'precipitacao',},];
     
-    //const [valor, setValor] = useState("");
+
+    function onChangeFunc(event) {
+        setValue(event.target.value)
+      }
 
 
   return (
     <>
-      <div class="div-select">
+      <div className="div-select">
     
-        <select>
-          <option selected value="selecione" >Selecione</option>     
-          <option value="temperatura">Temperatura</option>     
-          <option value='umidade'>Umidade</option>     
-          <option value="precipitacao">Precipitação</option>
+        <select onChange={onChangeFunc}  >
+        {options.map(item => (
+        <option key={item.value} value={item.value}>{item.name}</option>))}
+          
+          
         </select>
-         
+        
       </div>
       
     </>
   );
 };
 
+/*<option selected value="select">Selecione</option>     
+<option value="temperatura">Temperatura</option>     
+<option value='umidade'>Umidade</option>     
+<option value="precipitacao">Precipitação</option>*/
+
 export default Select;
+
